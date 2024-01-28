@@ -1,10 +1,9 @@
 import numpy as np
+from qiskit.quantum_info import Statevector
+from typing import List
 
 def create_qiskit_basis_state(qubit_count: int,
-                              data: tuple):
-    # replace numpy encoding with actual qiskit state creation
-    if qubit_count == 1:
-        qiskit_basis_state = np.array(data)
-    else:
-        qiskit_basis_state = None
+                              ket_str: str):
+    qiskit_basis_state = Statevector.from_label(ket_str)
+
     return qiskit_basis_state

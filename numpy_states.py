@@ -1,13 +1,17 @@
-import numpy as np 
+import numpy as np
+from typing import List
+from functools import reduce
 
-# initialize basis state as numpy array
-def create_np_basis_state(qubit_count: int,
-                          data: tuple) -> np.array:
-    if qubit_count == 1:
-        np_basis_state = np.array(data)
-    else:
-        np_basis_state = None
+# Initialize basis state as numpy array
+def create_np_computational_basis_state(qubit_count: int,
+                                        ket_str: str,
+                                        np_dtype: str = "complex128") -> np.array:
+    single_qubit_state_dict = {
+                            "0": np.array([1, 0], dtype=np_dtype),
+                            "1": np.array([0, 1], dtype=np_dtype)
+                            }
 
-    return np_basis_state
+    single_qubit_vectors = map(single_qubit_state_dict.get, ket_str)
+    computational_basis_vector = reduce(lambda x, y: np.kron(x, y), single_qubit_vectors)
 
-# initialize bell state (as tuple of numpy array?)
+    return computational_basis_vector
