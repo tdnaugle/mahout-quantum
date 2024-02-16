@@ -1,10 +1,9 @@
 import functools
 import sys
-from qiskit.quantum_info import Statevector
 
 def trace_calls_with_filter(filter_str):
 """
-Example usage of printing tne trace from a qiskit operation:
+Example usage of printing the qiskit-only calls from a qiskit operation:
 
 @trace_calls_with_filter("qiskit")
 def trace_state_vector():
